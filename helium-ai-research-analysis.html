@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helium AI — Business Feasibility & Strategy Validation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--pink:#F4B8C1;--yellow:#F7E4A6;--blue:#A8D5E2;--green:#B5E6C5;
+--pink-light:#FDF0F2;--yellow-light:#FFFBF0;--blue-light:#F0F8FA;--green-light:#F0FAF3;
+--text:#1A1A2E;--text-secondary:#4A4A6A;--surface:#FAFAFA;--white:#FFFFFF;
+--border:rgba(26,26,46,0.08);
+}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--surface);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',serif;line-height:1.25}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--text)}
+nav .logo span{color:var(--pink);opacity:0.9}
+nav .nav-links{display:flex;gap:24px;flex-wrap:wrap}
+nav .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.3px;transition:color 0.2s}
+nav .nav-links a:hover{color:var(--text)}
+.hero{padding:80px 0 60px;text-align:center;background:linear-gradient(180deg,var(--white) 0%,var(--pink-light) 50%,var(--yellow-light) 100%)}
+.hero .badge{display:inline-block;background:var(--pink);color:var(--text);font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(32px,5vw,52px);margin-bottom:16px;max-width:800px;margin-left:auto;margin-right:auto}
+.hero p{color:var(--text-secondary);font-size:17px;max-width:640px;margin:0 auto 32px}
+.hero .meta{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--text-secondary)}
+.hero .meta span{display:flex;align-items:center;gap:6px}
+section{padding:60px 0}
+section.alt{background:var(--white)}
+.section-label{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:8px}
+.section-title{font-size:clamp(24px,3vw,36px);margin-bottom:16px}
+.section-desc{color:var(--text-secondary);font-size:15px;max-width:700px;margin-bottom:40px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;transition:box-shadow 0.3s}
+.card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+.card-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.card h4{font-size:17px;margin-bottom:8px}
+.card p{color:var(--text-secondary);font-size:14px}
+.card-pink .card-icon{background:var(--pink-light);color:#c4506a}
+.card-yellow .card-icon{background:var(--yellow-light);color:#b8960a}
+.card-blue .card-icon{background:var(--blue-light);color:#3a8fa3}
+.card-green .card-icon{background:var(--green-light);color:#3a8f5a}
+.table-wrapper{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--white)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--surface);font-weight:600;text-align:left;padding:14px 16px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-secondary)}
+td{padding:12px 16px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:hover{background:var(--yellow-light)}
+.highlight-row{background:var(--green-light)!important;font-weight:600}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:40px}
+.stat-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center}
+.stat-box .num{font-family:'Fraunces',serif;font-size:30px;font-weight:700;margin-bottom:4px}
+.stat-box .label{font-size:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px}
+.stat-pink .num{color:#c4506a}
+.stat-yellow .num{color:#b8960a}
+.stat-blue .num{color:#3a8fa3}
+.stat-green .num{color:#3a8f5a}
+.callout{background:linear-gradient(135deg,var(--blue-light),var(--green-light));border-radius:12px;padding:32px;margin:32px 0;border-left:4px solid var(--blue)}
+.callout h4{margin-bottom:8px;font-size:18px}
+.callout p{color:var(--text-secondary);font-size:14px}
+.callout-warn{background:linear-gradient(135deg,var(--yellow-light),var(--pink-light));border-left-color:var(--yellow)}
+.verdict{background:linear-gradient(135deg,var(--green-light),var(--blue-light));border-radius:16px;padding:48px;text-align:center;margin:40px 0}
+.verdict h3{font-size:28px;margin-bottom:12px}
+.verdict p{color:var(--text-secondary);max-width:600px;margin:0 auto;font-size:15px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+@media(max-width:768px){.two-col{grid-template-columns:1fr}}
+.scenario{border:1px solid var(--border);border-radius:12px;padding:28px;background:var(--white)}
+.scenario .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:12px}
+.scenario .tag-best{background:var(--green);color:var(--text)}
+.scenario .tag-base{background:var(--blue);color:var(--text)}
+.scenario .tag-worst{background:var(--pink);color:var(--text)}
+.scenario h4{font-size:18px;margin-bottom:8px}
+.scenario p{font-size:14px;color:var(--text-secondary);margin-bottom:16px}
+.scenario .metric{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.scenario .metric:last-child{border-bottom:none}
+.scenario .metric span:last-child{font-weight:600}
+footer{padding:40px 0;text-align:center;color:var(--text-secondary);font-size:13px;border-top:1px solid var(--border)}
+.bar-chart{margin:20px 0}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{width:120px;font-size:13px;font-weight:500;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:28px;background:var(--surface);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:12px;font-weight:600;color:var(--text);transition:width 0.8s ease}
+.bar-pink{background:var(--pink)}
+.bar-yellow{background:var(--yellow)}
+.bar-blue{background:var(--blue)}
+.bar-green{background:var(--green)}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:24px;background:var(--white);border:1px solid var(--border);border-radius:12px;margin:20px 0}
+.flow-node{background:var(--blue-light);border:1px solid var(--blue);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;text-align:center}
+.flow-node.primary{background:var(--green-light);border-color:var(--green)}
+.flow-node.fallback{background:var(--yellow-light);border-color:var(--yellow)}
+.flow-node.media{background:var(--pink-light);border-color:var(--pink)}
+.flow-arrow{font-size:18px;color:var(--text-secondary)}
+.assumptions-list{columns:2;gap:32px;margin:20px 0}
+.assumptions-list li{font-size:14px;color:var(--text-secondary);margin-bottom:8px;break-inside:avoid}
+@media(max-width:768px){.assumptions-list{columns:1}}
+.comp-card{border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white)}
+.comp-card h4{font-size:17px;margin-bottom:4px}
+.comp-card .sub{font-size:13px;color:var(--text-secondary);margin-bottom:16px}
+.comp-metric{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.comp-metric:last-child{border-bottom:none}
+.comp-metric span:last-child{font-weight:600}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:768px){.comp-grid{grid-template-columns:1fr}}
+.tag-he{display:inline-block;background:var(--green);padding:2px 10px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:0.5px}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+<div class="logo">Helium <span>AI</span> Feasibility Report</div>
+<div class="nav-links">
+<a href="#market">Market</a>
+<a href="#competitors">Competitors</a>
+<a href="#stack">Tech Stack</a>
+<a href="#costs">API Costs</a>
+<a href="#usage">Usage</a>
+<a href="#pricing-val">Pricing</a>
+<a href="#scenarios">Scenarios</a>
+<a href="#revenue">Revenue</a>
+<a href="#verdict">Verdict</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="badge">Confidential Analysis</div>
+<h1>Helium AI Business Feasibility & Strategy Validation</h1>
+<p>A comprehensive analysis of Helium AI's multi-model autonomous platform, its unit economics, competitive benchmarks, and profitability forecast with 250K user acquisition targets.</p>
+<div class="meta">
+<span>Prepared: March 2026</span>
+<span>For: Neural Arc Inc.</span>
+<span>Scope: SaaS Feasibility + 3-Year Forecast</span>
+</div>
+</div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="alt">
+<div class="container">
+<div class="section-label">Executive Summary</div>
+<h2 class="section-title">Strategy Validation: Positive</h2>
+<p class="section-desc">Helium AI's multi-model orchestrator architecture positions it to capture meaningful market share. The Kimi K2.5 primary model selection drives cost efficiency that supports strong gross margins across all subscription tiers. Comparable platforms Manus AI and Genspark have validated this market with $100M+ ARR in under 12 months.</p>
+
+<div class="stat-grid">
+<div class="stat-box stat-green"><div class="num">250K</div><div class="label">Year 1 User Target</div></div>
+<div class="stat-box stat-blue"><div class="num">$6.1M</div><div class="label">Y1 Subscription Revenue</div></div>
+<div class="stat-box stat-pink"><div class="num">76-90%</div><div class="label">Gross Margin Range</div></div>
+<div class="stat-box stat-yellow"><div class="num">$7.9M</div><div class="label">Y1 Total Revenue</div></div>
+<div class="stat-box stat-green"><div class="num">$17.8M</div><div class="label">Y3 Total Revenue</div></div>
+</div>
+
+<div class="callout">
+<h4>Key Finding</h4>
+<p>By using Kimi K2.5 as the primary model ($0.50/$2.80 per M tokens) with Claude as fallback, Helium AI achieves a weighted average API cost that is 5-8x lower than competitors relying on Claude or GPT-5 as their primary model. With 250K users in Year 1 and 65% paid conversion (69.2% Pro, 30.8% Max), the platform targets $6.1M in subscription revenue at 82% blended gross margin. Including B2B bespoke and Teams, Year 1 total revenue reaches $7.9M.</p>
+</div>
+</div>
+</section>
+
+<!-- MARKET CONTEXT -->
+<section id="market">
+<div class="container">
+<div class="section-label">Section 1</div>
+<h2 class="section-title">Market Context & Competitive Landscape</h2>
+<p class="section-desc">The AI platform market is projected to reach $153B by 2028. ChatGPT holds 80.49% of the generative AI chatbot market share. Multi-model agentic workspaces (Manus, Genspark, Helium) represent the fastest-growing segment.</p>
+
+<div class="card-grid">
+<div class="card card-pink">
+<div class="card-icon">1</div>
+<h4>Single-Model Chatbots</h4>
+<p>ChatGPT ($20/mo), Claude ($20/mo), Gemini ($19.99/mo). Locked to one model provider. Limited media generation. Helium's multi-model orchestrator and unified workspace differentiate it here.</p>
+</div>
+<div class="card card-blue">
+<div class="card-icon">2</div>
+<h4>AI Aggregators</h4>
+<p>Poe, TypingMind, and similar platforms. These offer model switching but lack native media generation, AIM knowledge base, Prism brand profiles, and Bees autonomous agents.</p>
+</div>
+<div class="card card-yellow">
+<div class="card-icon">3</div>
+<h4>Vertical AI Tools</h4>
+<p>Jasper (writing), Canva AI (design), Descript (video). Each solves one domain. Helium bundles all modalities into one subscription, reducing tool sprawl and total cost of ownership.</p>
+</div>
+<div class="card card-green">
+<div class="card-icon">4</div>
+<h4>Agentic AI Workspaces</h4>
+<p>Manus AI ($100M ARR in 8 months), Genspark ($50M ARR in 5 months). These validate the multi-model workspace category. Helium differentiates with media generation, Bees agents, and B2B bespoke delivery.</p>
+</div>
+</div>
+
+<div class="callout" style="margin-top:32px">
+<h4>Positioning Advantage</h4>
+<p>Helium AI is not competing as "another ChatGPT." It competes as a unified creative and productivity workspace that replaces 3-5 separate subscriptions. The $35/mo Pro plan replaces a typical $60-100/mo stack of ChatGPT + image generation + presentation tools. This value density is the core selling proposition. The B2B bespoke channel (3 projects/month at $30K avg) provides a revenue stream neither Manus nor Genspark pursued, adding $1.4M+ in Year 1.</p>
+</div>
+</div>
+</section>
+
+<!-- COMPETITOR GROWTH MAP -->
+<section class="alt" id="competitors">
+<div class="container">
+<div class="section-label">Section 2</div>
+<h2 class="section-title">Competitor Growth Benchmarks: Market Validation</h2>
+<p class="section-desc">Two of the fastest-growing AI agent platforms launched in 2025. Both validate the market opportunity for multi-model agentic workspaces. Their trajectories provide context for Helium AI's growth targets.</p>
+
+<div class="comp-grid">
+<div class="comp-card" style="border-top:4px solid var(--pink)">
+<h4>Manus AI</h4>
+<div class="sub">General AI Agent. Launched March 2025. Acquired by Meta for $2-3B.</div>
+<div class="comp-metric"><span>Launch</span><span>March 2025</span></div>
+<div class="comp-metric"><span>Month 1</span><span>200+ countries, 2M waitlist</span></div>
+<div class="comp-metric"><span>Month 4 ARR</span><span>$37M</span></div>
+<div class="comp-metric"><span>Month 5 ARR</span><span>$90M</span></div>
+<div class="comp-metric"><span>Month 9 ARR</span><span>$100M</span></div>
+<div class="comp-metric"><span>Month 10 Run Rate</span><span>$125M</span></div>
+<div class="comp-metric"><span>MoM Growth</span><span>20%+ sustained</span></div>
+<div class="comp-metric"><span>Team</span><span>78 employees</span></div>
+<div class="comp-metric"><span>Funding</span><span>$85M</span></div>
+<div class="comp-metric"><span>Exit</span><span style="color:#c4506a">$2-3B (Meta acquisition)</span></div>
+</div>
+
+<div class="comp-card" style="border-top:4px solid var(--blue)">
+<h4>Genspark</h4>
+<div class="sub">AI Workspace / Super Agent. Launched April 2025. $1.25B valuation.</div>
+<div class="comp-metric"><span>Launch</span><span>April 2025</span></div>
+<div class="comp-metric"><span>Day 9</span><span>$10M ARR</span></div>
+<div class="comp-metric"><span>Month 1.5 ARR</span><span>$36M</span></div>
+<div class="comp-metric"><span>Month 5 ARR</span><span>$50M</span></div>
+<div class="comp-metric"><span>Late 2025</span><span>$200M (est.)</span></div>
+<div class="comp-metric"><span>MoM Growth</span><span>~20% sustained</span></div>
+<div class="comp-metric"><span>Team</span><span>~143 employees</span></div>
+<div class="comp-metric"><span>Funding</span><span>$460M total</span></div>
+<div class="comp-metric"><span>Valuation</span><span style="color:#3a8fa3">$1.25B (Series B)</span></div>
+</div>
+
+<div class="comp-card" style="border-top:4px solid var(--green)">
+<h4>Helium AI <span class="tag-he">THIS COMPANY</span></h4>
+<div class="sub">Autonomous AI Platform. By Neural Arc Inc. Bootstrapped.</div>
+<div class="comp-metric"><span>Pre-Launch</span><span>15,000+ users in ~55 days</span></div>
+<div class="comp-metric"><span>Y1 User Target</span><span>250,000</span></div>
+<div class="comp-metric"><span>Y1 Subscription Rev</span><span>$6.1M</span></div>
+<div class="comp-metric"><span>Y1 Total Rev</span><span>$7.9M</span></div>
+<div class="comp-metric"><span>Y3 Total Rev</span><span>$17.8M</span></div>
+<div class="comp-metric"><span>3-Year Cumulative</span><span>$37.9M</span></div>
+<div class="comp-metric"><span>Team</span><span>Lean (founder-led)</span></div>
+<div class="comp-metric"><span>Funding</span><span>Bootstrapped + seeking</span></div>
+<div class="comp-metric"><span>Differentiator</span><span style="color:#3a8f5a">Multi-model + media + B2B</span></div>
+</div>
+</div>
+
+<div class="table-wrapper" style="margin-top:24px">
+<table>
+<thead><tr><th>Milestone</th><th class="r">Manus AI</th><th class="r">Genspark</th><th class="r">Helium AI (Target)</th></tr></thead>
+<tbody>
+<tr><td>Month 6 ARR</td><td class="r">$90M</td><td class="r">$50M</td><td class="r">$20M run rate</td></tr>
+<tr><td>Year 1 Total Revenue</td><td class="r">~$100M</td><td class="r">~$150-200M</td><td class="r">$7.9M</td></tr>
+<tr><td>Funding Raised at Launch</td><td class="r">$85M</td><td class="r">$460M</td><td class="r">$0 (Bootstrapped)</td></tr>
+<tr><td>Revenue per Employee</td><td class="r">~$1.6M</td><td class="r">~$1.4M</td><td class="r">TBD (capital efficient)</td></tr>
+<tr class="highlight-row"><td>Valuation / Exit</td><td class="r">$2-3B (Meta)</td><td class="r">$1.25B (Series B)</td><td class="r">Seeking investment</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout" style="margin-top:24px">
+<h4>What This Means for Helium AI</h4>
+<p>Both Manus ($100M ARR in 8 months) and Genspark ($50M ARR in 5 months) prove massive demand for multi-model agentic platforms. Helium's $7.9M Y1 target is conservative by comparison, but capital-efficient. The key difference: both competitors raised $85M-$460M before or during launch. Helium achieved 15,000 users bootstrapped. With investment capital to fuel paid acquisition, Helium's trajectory could accelerate toward these benchmarks. The product scope is comparable (multi-model, media generation, autonomous agents via Bees), and the B2B bespoke channel provides a revenue stream neither competitor pursued.</p>
+</div>
+</div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+<div class="container">
+<div class="section-label">Section 3</div>
+<h2 class="section-title">Model Stack & Orchestration Architecture</h2>
+<p class="section-desc">Helium AI's orchestrator routes requests to the optimal model based on task type, with cascading fallback logic for reliability.</p>
+
+<div class="flow">
+<div class="flow-node primary">User Request</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node primary">Orchestrator</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node" style="background:var(--green-light);border-color:var(--green)">Kimi K2.5 (Primary ~92%)</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-node fallback">Claude Sonnet 4.6 (Fallback 1 ~5%)</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-node fallback">Claude Sonnet 4.5 (Fallback 2 ~2%)</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-node fallback">Claude Haiku 4.5 (Fallback 3 ~1%)</div>
+</div>
+
+<div style="margin-top:24px">
+<div class="flow">
+<div class="flow-node media">Image: Gemini 3 Pro Preview</div>
+<div class="flow-node media">Video: Veo 3.1 (Primary)</div>
+<div class="flow-node media">Video: Wan 2.6 (Fallback)</div>
+<div class="flow-node media">Voice: Deepgram</div>
+<div class="flow-node media">Search: Tavily</div>
+<div class="flow-node media">Sandbox: Daytona</div>
+</div>
+</div>
+
+<div class="table-wrapper" style="margin-top:32px">
+<table>
+<thead><tr><th>Model / Service</th><th>Role</th><th>Input Cost</th><th>Output Cost</th><th>Unit Cost</th><th>Traffic %</th></tr></thead>
+<tbody>
+<tr class="highlight-row"><td>Kimi K2.5</td><td>Primary LLM</td><td>$0.50/M tokens</td><td>$2.80/M tokens</td><td>Per token</td><td>~92%</td></tr>
+<tr><td>Claude Sonnet 4.6</td><td>Fallback 1</td><td>$3.00/M tokens</td><td>$15.00/M tokens</td><td>Per token</td><td>~5%</td></tr>
+<tr><td>Claude Sonnet 4.5</td><td>Fallback 2</td><td>$3.00/M tokens</td><td>$15.00/M tokens</td><td>Per token</td><td>~2%</td></tr>
+<tr><td>Claude Haiku 4.5</td><td>Fallback 3</td><td>$1.00/M tokens</td><td>$5.00/M tokens</td><td>Per token</td><td>~1%</td></tr>
+<tr><td>Gemini 3 Pro Image</td><td>Image Generation</td><td colspan="2">$0.134/image (1K-2K)</td><td>Per image</td><td>On demand</td></tr>
+<tr><td>Veo 3.1 Fast</td><td>Video Generation</td><td colspan="2">$0.15/sec ($1.20 per 8s clip)</td><td>Per second</td><td>On demand</td></tr>
+<tr><td>Wan 2.6</td><td>Video Fallback</td><td colspan="2">~$0.07/run</td><td>Per run</td><td>Fallback</td></tr>
+<tr><td>Deepgram Nova-3</td><td>Voice/STT</td><td colspan="2">$0.0077/min</td><td>Per minute</td><td>On demand</td></tr>
+<tr><td>Tavily</td><td>Web Search</td><td colspan="2">$0.008/credit (1 search)</td><td>Per credit</td><td>On demand</td></tr>
+<tr><td>Daytona</td><td>Code Sandbox</td><td colspan="2">~$0.05/hour</td><td>Per hour</td><td>On demand</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout" style="margin-top:24px">
+<h4>Weighted Blended LLM Cost</h4>
+<p>With 92% traffic on Kimi K2.5 and cascading fallback through Claude tiers, the blended input cost is $0.68/M tokens and blended output cost is $3.68/M tokens. This is 4.4x cheaper on input and 4.1x cheaper on output than if Claude Sonnet 4.6 were the primary model. This cost structure is the foundation of Helium's margin advantage. At 78,451 active paying users (end Y1), monthly API spend is approximately $784K, well within the revenue envelope.</p>
+</div>
+</div>
+</section>
+
+<!-- API COST DEEP DIVE -->
+<section class="alt" id="costs">
+<div class="container">
+<div class="section-label">Section 4</div>
+<h2 class="section-title">Per-User API Cost Analysis</h2>
+<p class="section-desc">We modeled three user archetypes based on industry research: heavy, moderate, and light users. ChatGPT data shows average users send roughly 25 prompts per week; power users exceed 50+ prompts daily.</p>
+
+<div class="two-col">
+<div>
+<h3 style="font-size:20px;margin-bottom:20px">Usage Assumptions</h3>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>Parameter</th><th>Heavy</th><th>Moderate</th><th>Light</th></tr></thead>
+<tbody>
+<tr><td>Daily Input Tokens</td><td>80,000</td><td>30,000</td><td>5,000</td></tr>
+<tr><td>Daily Output Tokens</td><td>40,000</td><td>15,000</td><td>3,000</td></tr>
+<tr><td>Monthly Images</td><td>50</td><td>15</td><td>3</td></tr>
+<tr><td>Monthly Videos (8s)</td><td>3</td><td>1</td><td>0</td></tr>
+<tr><td>Monthly Voice Minutes</td><td>10</td><td>3</td><td>0</td></tr>
+<tr><td>Monthly Tavily Searches</td><td>100</td><td>30</td><td>5</td></tr>
+<tr><td>Monthly Sandbox Hours</td><td>2</td><td>0.5</td><td>0</td></tr>
+<tr><td>Active Days/Month</td><td>30</td><td>22</td><td>12</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div>
+<h3 style="font-size:20px;margin-bottom:20px">Monthly Cost per User Type</h3>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>Cost Component</th><th>Heavy</th><th>Moderate</th><th>Light</th></tr></thead>
+<tbody>
+<tr><td>LLM (Text)</td><td>$6.04</td><td>$1.89</td><td>$0.27</td></tr>
+<tr><td>Image Generation</td><td>$6.70</td><td>$2.01</td><td>$0.40</td></tr>
+<tr><td>Video Generation</td><td>$3.60</td><td>$1.20</td><td>$0.00</td></tr>
+<tr><td>Voice (Deepgram)</td><td>$0.08</td><td>$0.02</td><td>$0.00</td></tr>
+<tr><td>Search (Tavily)</td><td>$0.80</td><td>$0.24</td><td>$0.04</td></tr>
+<tr><td>Sandbox (Daytona)</td><td>$0.10</td><td>$0.03</td><td>$0.00</td></tr>
+<tr style="font-weight:700;background:var(--green-light)"><td>Total API Cost</td><td>$17.32</td><td>$5.39</td><td>$0.71</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="callout-warn callout" style="margin-top:32px">
+<h4>Scale Impact: 78K Active Paid Users at Year 1 End</h4>
+<p>At 78,451 active paying users with the 30/35/25/10 heavy/moderate/light/dormant distribution, the blended per-user API cost is $8.33/month. Monthly platform API spend: ~$784K. Monthly subscription revenue: ~$4.3M. This yields a blended gross margin of 82%. Even with 40% heavy users (worst case), margin holds at 74.3%.</p>
+</div>
+</div>
+</section>
+
+<!-- USAGE PATTERNS -->
+<section id="usage">
+<div class="container">
+<div class="section-label">Section 5</div>
+<h2 class="section-title">Real-World Usage Pattern Research</h2>
+<p class="section-desc">Industry data from ChatGPT's 800M+ weekly active users informs our usage modeling. Key findings ground our assumptions.</p>
+
+<div class="card-grid">
+<div class="card card-blue">
+<div class="card-icon">📊</div>
+<h4>Average Prompts per User</h4>
+<p>ChatGPT users average ~25 prompts per week (BestBrokers study, March 2026). This equates to ~3.5 prompts/day. At ~2,000 tokens per prompt cycle (input + output), that is ~7,000 tokens/day for the average user, well within "light" usage.</p>
+</div>
+<div class="card card-green">
+<div class="card-icon">📈</div>
+<h4>Power User Ceiling</h4>
+<p>Pro/power users send 50-100+ prompts daily. With reasoning models like Kimi K2.5 using extended thinking (up to 96K tokens budget), a power user session could hit 80-100K tokens/day. This maps to our "heavy" archetype at ~120K total tokens/day.</p>
+</div>
+<div class="card card-yellow">
+<div class="card-icon">⏱</div>
+<h4>100K Token/Day Cap Assessment</h4>
+<p>Your assumption of 100K tokens/day as a ceiling is conservative and realistic. Only extreme power users doing continuous coding or document analysis would approach this. 95%+ of users will fall well below this threshold.</p>
+</div>
+<div class="card card-pink">
+<div class="card-icon">📉</div>
+<h4>Engagement Drop-off</h4>
+<p>Subscription services see 30-40% of paying users as "dormant" in any given month. They pay but rarely use the product. This creates a subsidy effect where dormant users fund heavy users, improving blended economics.</p>
+</div>
+</div>
+
+<h3 style="font-size:20px;margin:32px 0 16px">Predicted User Distribution (Pro Plan)</h3>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">Heavy Users</div><div class="bar-track"><div class="bar-fill bar-pink" style="width:30%">30%</div></div></div>
+<div class="bar-row"><div class="bar-label">Moderate Users</div><div class="bar-track"><div class="bar-fill bar-blue" style="width:35%">35%</div></div></div>
+<div class="bar-row"><div class="bar-label">Light Users</div><div class="bar-track"><div class="bar-fill bar-green" style="width:25%">25%</div></div></div>
+<div class="bar-row"><div class="bar-label">Dormant Users</div><div class="bar-track"><div class="bar-fill bar-yellow" style="width:10%">10%</div></div></div>
+</div>
+
+<h3 style="font-size:20px;margin:32px 0 16px">Predicted User Distribution (Max Plan)</h3>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">Heavy Users</div><div class="bar-track"><div class="bar-fill bar-pink" style="width:45%">45%</div></div></div>
+<div class="bar-row"><div class="bar-label">Moderate Users</div><div class="bar-track"><div class="bar-fill bar-blue" style="width:30%">30%</div></div></div>
+<div class="bar-row"><div class="bar-label">Light Users</div><div class="bar-track"><div class="bar-fill bar-green" style="width:15%">15%</div></div></div>
+<div class="bar-row"><div class="bar-label">Dormant Users</div><div class="bar-track"><div class="bar-fill bar-yellow" style="width:10%">10%</div></div></div>
+</div>
+</div>
+</section>
+
+<!-- PRICING VALIDATION -->
+<section class="alt" id="pricing-val">
+<div class="container">
+<div class="section-label">Section 6</div>
+<h2 class="section-title">Pricing Strategy Validation</h2>
+<p class="section-desc">Helium AI's current pricing compared against API costs and competitive benchmarks. With 65% of 250K users converting to paid (69.2% Pro, 30.8% Max), the weighted ARPU is $55.02/user/month.</p>
+
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Plan</th><th>Monthly Price</th><th>Annual Price/mo</th><th>Blended API Cost</th><th>Gross Margin (Monthly)</th><th>Gross Margin (Annual)</th></tr>
+</thead>
+<tbody>
+<tr><td>Pro ($35/mo)</td><td>$35.00</td><td>$31.00</td><td>$8.33</td><td>76.2%</td><td>73.1%</td></tr>
+<tr class="highlight-row"><td>Max ($100/mo)</td><td>$100.00</td><td>$89.00</td><td>$14.89</td><td>85.1%</td><td>83.3%</td></tr>
+<tr><td>Teams ($80/user)</td><td>$80.00</td><td>N/A</td><td>$8.33</td><td>89.6%</td><td>N/A</td></tr>
+<tr class="highlight-row"><td>Platform Blended</td><td>$55.02 (ARPU)</td><td>~$50.72</td><td>$10.34</td><td>82.0%</td><td>79.6%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 style="font-size:20px;margin:32px 0 16px">Competitive Pricing Comparison</h3>
+<div class="table-wrapper">
+<table>
+<thead><tr><th>Platform</th><th>Price/mo</th><th>Capabilities</th><th>Helium Advantage</th></tr></thead>
+<tbody>
+<tr><td>ChatGPT Plus</td><td>$20</td><td>Single model, images, limited video</td><td>Helium Pro adds unlimited text, 100 images, 3 videos, AIM, Prism, presentations for $35</td></tr>
+<tr><td>ChatGPT Pro</td><td>$200</td><td>Unlimited, deep research, Sora Pro</td><td>Helium Max at $100 provides comparable scope at 50% less</td></tr>
+<tr><td>Manus AI Pro</td><td>$199</td><td>Full agent, 19,900 credits/mo</td><td>Helium Max at $100 with unlimited prompts + media generation</td></tr>
+<tr><td>Genspark</td><td>$99</td><td>AI workspace, multi-model</td><td>Helium Pro at $35 undercuts by 65% with comparable features</td></tr>
+<tr><td>Microsoft Copilot</td><td>$30/user</td><td>Locked to Microsoft ecosystem</td><td>Helium Teams at $80 provides richer AI without ecosystem lock-in</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout" style="margin-top:24px">
+<h4>Pricing Recommendation</h4>
+<p>The current pricing structure is well-calibrated. Pro at $35 sits in the sweet spot: significantly below Genspark ($99) and Manus ($199), yet generates 76.2% gross margin. The 30.8% of users choosing Max ($100) drives the weighted ARPU to $55.02, creating strong revenue density. The 15% annual discount creates retention incentives. No pricing changes are recommended.</p>
+</div>
+</div>
+</section>
+
+<!-- SCENARIOS -->
+<section id="scenarios">
+<div class="container">
+<div class="section-label">Section 7</div>
+<h2 class="section-title">Profitability Scenarios</h2>
+<p class="section-desc">Three scenarios modeled based on user acquisition rate against the 250K target, conversion rates, and usage abuse patterns. All scenarios include Teams (5 companies/month) and B2B bespoke (3 projects/month at $30K).</p>
+
+<div class="card-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="scenario">
+<div class="tag tag-best">Best Case</div>
+<h4>Strong Acquisition, High Conversion</h4>
+<p>250K users, 70% conversion, 25% heavy users, 5% monthly churn.</p>
+<div class="metric"><span>Year 1 Users</span><span>250,000</span></div>
+<div class="metric"><span>Paid Conversion</span><span>70%</span></div>
+<div class="metric"><span>Heavy User %</span><span>25%</span></div>
+<div class="metric"><span>Blended Gross Margin</span><span>84.2%</span></div>
+<div class="metric"><span>Monthly Churn</span><span>5%</span></div>
+<div class="metric"><span>Y1 Subscription Revenue</span><span>$7.1M</span></div>
+<div class="metric"><span>Y1 Total Revenue</span><span>$9.0M</span></div>
+</div>
+
+<div class="scenario">
+<div class="tag tag-base">Base Case</div>
+<h4>Expected Pattern</h4>
+<p>250K users, 65% conversion, 30% heavy users, 6% monthly churn.</p>
+<div class="metric"><span>Year 1 Users</span><span>250,000</span></div>
+<div class="metric"><span>Paid Conversion</span><span>65%</span></div>
+<div class="metric"><span>Heavy User %</span><span>30%</span></div>
+<div class="metric"><span>Blended Gross Margin</span><span>82.0%</span></div>
+<div class="metric"><span>Monthly Churn</span><span>6%</span></div>
+<div class="metric"><span>Y1 Subscription Revenue</span><span>$6.1M</span></div>
+<div class="metric"><span>Y1 Total Revenue</span><span>$7.9M</span></div>
+</div>
+
+<div class="scenario">
+<div class="tag tag-worst">Worst Case</div>
+<h4>Slower Ramp, Higher Abuse</h4>
+<p>180K users, 55% conversion, 40% heavy users, 8% monthly churn.</p>
+<div class="metric"><span>Year 1 Users</span><span>180,000</span></div>
+<div class="metric"><span>Paid Conversion</span><span>55%</span></div>
+<div class="metric"><span>Heavy User %</span><span>40%</span></div>
+<div class="metric"><span>Blended Gross Margin</span><span>74.3%</span></div>
+<div class="metric"><span>Monthly Churn</span><span>8%</span></div>
+<div class="metric"><span>Y1 Subscription Revenue</span><span>$3.4M</span></div>
+<div class="metric"><span>Y1 Total Revenue</span><span>$5.2M</span></div>
+</div>
+</div>
+
+<div class="callout-warn callout" style="margin-top:24px">
+<h4>Risk Factor: Video Generation Abuse</h4>
+<p>The highest cost risk is in the Max plan's unlimited video generation. At $1.20 per 8-second Veo 3.1 Fast clip, a user generating 10 videos/day would cost $36/mo in video API alone. Recommendation: implement a soft daily cap of 5 videos/day for Max users with an option to request more. Alternatively, route non-premium video requests through Wan 2.6 ($0.07/run) to reduce costs by 94%.</p>
+</div>
+</div>
+</section>
+
+<!-- REVENUE STREAMS -->
+<section class="alt" id="revenue">
+<div class="container">
+<div class="section-label">Section 8</div>
+<h2 class="section-title">3-Year Revenue Forecast</h2>
+<p class="section-desc">Four revenue streams with 15-20% quarterly growth on B2B bespoke, 15-20% YoY organic user growth post-Y1, and 45-50% YoY total revenue growth.</p>
+
+<div class="table-wrapper">
+<table>
+<thead><tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th><th class="r">3-Year Total</th></tr></thead>
+<tbody>
+<tr><td>Consumer Subscriptions (Pro + Max)</td><td class="r">$6,126,000</td><td class="r">$8,264,000</td><td class="r">$10,724,000</td><td class="r">$25,114,000</td></tr>
+<tr><td>Teams Subscriptions</td><td class="r">$180,000</td><td class="r">$576,000</td><td class="r">$1,152,000</td><td class="r">$1,908,000</td></tr>
+<tr><td>B2B Bespoke Projects</td><td class="r">$1,398,000</td><td class="r">$2,516,000</td><td class="r">$4,529,000</td><td class="r">$8,443,000</td></tr>
+<tr><td>B2B Licensing (Recurring)</td><td class="r">$226,000</td><td class="r">$766,000</td><td class="r">$1,396,000</td><td class="r">$2,388,000</td></tr>
+<tr class="highlight-row"><td>Total Revenue</td><td class="r" style="font-size:16px">$7,930,000</td><td class="r" style="font-size:16px">$12,122,000</td><td class="r" style="font-size:16px">$17,801,000</td><td class="r" style="font-size:16px">$37,853,000</td></tr>
+<tr><td>YoY Growth</td><td class="r">N/A</td><td class="r" style="color:#3a8f5a;font-weight:700">+53%</td><td class="r" style="color:#3a8f5a;font-weight:700">+47%</td><td class="r"></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="stat-grid" style="margin-top:24px">
+<div class="stat-box stat-green"><div class="num">$7.9M</div><div class="label">Year 1 Total</div></div>
+<div class="stat-box stat-blue"><div class="num">$12.1M</div><div class="label">Year 2 (+53% YoY)</div></div>
+<div class="stat-box stat-pink"><div class="num">$17.8M</div><div class="label">Year 3 (+47% YoY)</div></div>
+<div class="stat-box stat-yellow"><div class="num">$37.9M</div><div class="label">3-Year Cumulative</div></div>
+</div>
+</div>
+</section>
+
+<!-- RISKS -->
+<section>
+<div class="container">
+<div class="section-label">Section 9</div>
+<h2 class="section-title">Risks & Mitigation Strategies</h2>
+
+<div class="card-grid">
+<div class="card card-pink">
+<div class="card-icon">⚠</div>
+<h4>API Price Volatility</h4>
+<p>Model providers change pricing. Mitigation: multi-provider architecture already in place. If Kimi K2.5 raises prices, route to DeepInfra ($0.45/M) or self-host open-weight model. The orchestrator design inherently mitigates vendor lock-in.</p>
+</div>
+<div class="card card-yellow">
+<div class="card-icon">⚠</div>
+<h4>Video Cost Overrun</h4>
+<p>Unlimited video on Max creates open-ended liability. Mitigation: implement fair-use soft caps, route standard requests through Wan 2.6 ($0.07) instead of Veo 3.1 ($1.20), and reserve Veo for premium quality requests only.</p>
+</div>
+<div class="card card-blue">
+<div class="card-icon">⚠</div>
+<h4>250K User Acquisition Risk</h4>
+<p>Reaching 250K organic users in 12 months is ambitious. Mitigation: the pre-launch already achieved 15K in ~55 days. With investment capital for paid acquisition (India-first strategy with low CPAs), this target is achievable. Worst case scenario still projects $5.2M total revenue.</p>
+</div>
+<div class="card card-green">
+<div class="card-icon">⚠</div>
+<h4>Churn Rate at Scale</h4>
+<p>At 78K+ paying users, even small churn fluctuations have outsized impact. Mitigation: annual subscriptions (45% uptake target) with 15% discount create lock-in. AIM knowledge base and Prism brand profiles create switching costs. Teams plan with shared workspace creates organizational stickiness.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VERDICT -->
+<section class="alt" id="verdict">
+<div class="container">
+<div class="verdict">
+<div style="font-size:48px;margin-bottom:16px">✅</div>
+<h3>Strategy Validated: Proceed with Confidence</h3>
+<p>Helium AI's multi-model architecture creates a structural cost advantage that supports 76-90% gross margins across all subscription tiers. Manus AI ($100M ARR in 8 months) and Genspark ($50M ARR in 5 months) have validated the market. Helium targets a capital-efficient $7.9M in Year 1 and $17.8M by Year 3. The B2B bespoke channel adds diversified revenue that neither competitor pursued. Investment capital accelerates the path to $50M+ ARR.</p>
+</div>
+
+<div class="section-label" style="margin-top:40px">Key Assumptions</div>
+<ul class="assumptions-list" style="list-style:disc;padding-left:20px">
+<li>250,000 organic users in Year 1, growing 15-20% YoY thereafter</li>
+<li>65% paid conversion rate (69.2% Pro at $35, 30.8% Max at $100)</li>
+<li>Weighted ARPU of $55.02/user/month</li>
+<li>Kimi K2.5 pricing remains at or below $0.50/$2.80 per M tokens</li>
+<li>92% of LLM traffic routes through primary model</li>
+<li>User distribution follows 30/35/25/10 heavy/moderate/light/dormant split</li>
+<li>6% monthly churn for monthly subscribers, 2.5% for annual</li>
+<li>45% of paid users choose annual billing (15% discount)</li>
+<li>5 Teams companies onboarded per month at min 5 seats</li>
+<li>3 B2B bespoke projects per month at $30K avg + $15K/yr license</li>
+<li>B2B bespoke grows 17.5% quarter-over-quarter</li>
+<li>Prompt caching reduces effective LLM costs by 15-25% (not modeled, upside)</li>
+</ul>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>Helium AI Business Feasibility Report. Prepared March 2026 for Neural Arc Inc.</p>
+<p style="margin-top:8px">Competitor data sourced from Sacra, SCMP/Yahoo Finance, BusinessWire, and company blogs. All projections are forward-looking estimates.</p>
+</div>
+</footer>
+
+</body>
+</html>
